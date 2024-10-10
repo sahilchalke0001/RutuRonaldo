@@ -1,0 +1,37 @@
+/* .e1nzilvr4 {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #bef0ff;
+  opacity: 0.8;
+  color: rgb(0, 0, 0);
+} */
+
+.e1f1d6gn2{
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+ 
+  opacity: 0.9;
+  color: rgb(255, 255, 255);
+}
+
+.dark-container {
+  background-color: #343a40;  /* Dark gray background */
+  padding: 20px;
+  border-radius: 10px;
+  color: #ffffff; /* White text for readability */
+}
+
+.stButton button {
+  background-color: #007bff; /* Customize the button color */
+  color: white; /* Button text color */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.stButton button:hover {
+  background-color: #0056b3; /* Darken the button on hover */
+}
