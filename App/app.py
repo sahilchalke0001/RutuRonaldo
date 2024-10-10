@@ -67,15 +67,15 @@ def main():
         
         # Input fields for the user
         player_name = col.text_input("Enter the player's name:")
-        age = col.number_input("Enter the Age:", min_value=0, max_value=100, step=1)
-        dribbling_reflexes = col.number_input("Enter the Dribbling / Reflexes:", min_value=0, max_value=100, step=1)
-        passing_kicking = col.number_input("Enter the Passing / Kicking:", min_value=0, max_value=100, step=1)
-        shooting_handling = col.number_input("Enter the Shooting / Handling:", min_value=0, max_value=100, step=1)
-        total_mentality = col.number_input("Enter the Total mentality (349):", min_value=0, max_value=500, step=1)
-        shot_power = col.number_input("Enter the Shot power:", min_value=0, max_value=100, step=1)
+        age = col.number_input("Enter the Age(min value=16, max value=45):", min_value=16, max_value=45, step=1)
+        dribbling_reflexes = col.number_input("Enter the Dribbling / Reflexes(max value=100):", min_value=0, max_value=100, step=1)
+        passing_kicking = col.number_input("Enter the Passing / Kicking:(max value=100)", min_value=0, max_value=100, step=1)
+        shooting_handling = col.number_input("Enter the Shooting / Handling(max value=100):", min_value=0, max_value=100, step=1)
+        total_mentality = col.number_input("Enter the Total mentality(max value=100):", min_value=0, max_value=500, step=1)
+        shot_power = col.number_input("Enter the Shot power (max value=100):", min_value=0, max_value=100, step=1)
         total_power = col.number_input("Enter the Total power :", min_value=0, max_value=500, step=1)
-        ball_control = col.number_input("Enter the Ball control :", min_value=0, max_value=100, step=1)
-        finishing = col.number_input("Enter the Finishing:", min_value=0, max_value=100, step=1)
+        ball_control = col.number_input("Enter the Ball control (max value=500):", min_value=0, max_value=100, step=1)
+        finishing = col.number_input("Enter the Finishing(max value=100):", min_value=0, max_value=100, step=1)
 
     with st.container():
         # Button to trigger prediction
