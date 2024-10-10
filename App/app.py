@@ -112,7 +112,7 @@ def main():
     st.plotly_chart(radar_chart)
 
     # Load custom CSS
-    with open("assets/style.css") as f:
+    with open("Assets/style.css") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
     # Set background image
