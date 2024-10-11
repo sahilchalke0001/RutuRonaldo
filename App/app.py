@@ -54,8 +54,8 @@ def main():
     model = load_model()
 
     with st.container():
-        st.title("⚽⚽⚽⚽⚽⚽⚽")
-        st.subheader("Ronaldo is far better than Messi because he has scored more goals and has more UCL trophies.")
+        st.title("⚽⚽⚽Football⚽Transfer⚽⚽⚽")
+        st.subheader("This app predicts the transfer values of football players")
         st.subheader("Predict a player's market value using advanced ML techniques.")
 
     with st.container():
