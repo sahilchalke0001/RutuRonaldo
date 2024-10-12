@@ -54,8 +54,13 @@ def main():
     model = load_model()
 
     with st.container():
+<<<<<<< HEAD
         st.title("⚽⚽⚽Football⚽Transfer⚽⚽⚽")
         st.subheader("This app predicts the transfer values of football players")
+=======
+        st.title("⚽⚽⚽Rutu⚽Ronaldo⚽⚽⚽")
+        st.subheader("Ronaldo is far better than Messi because he has scored more goals and has more UCL trophies.")
+>>>>>>> b0bae99 (Your commit message)
         st.subheader("Predict a player's market value using advanced ML techniques.")
 
     with st.container():
@@ -133,4 +138,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
