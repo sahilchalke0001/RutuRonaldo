@@ -35,7 +35,7 @@ def get_radar_chart(input_data):
         polar=dict(
             radialaxis=dict(
                 visible=True,
-                range=[0, 100]  
+                range=[0, 100]  # You can adjust this based on your data
             )),
         showlegend=True
     )
@@ -54,55 +54,69 @@ def main():
     model = load_model()
 
     with st.container():
-<<<<<<< HEAD
-        st.title("⚽⚽⚽Football⚽Transfer⚽⚽⚽")
-        st.subheader("This app predicts the transfer values of football players")
-=======
-        st.title("⚽⚽⚽Rutu⚽Ronaldo⚽⚽⚽")
-        st.subheader("Ronaldo is far better than Messi because he has scored more goals and has more UCL trophies.")
->>>>>>> b0bae99 (Your commit message)
+        st.title("⚽ Football Market Value Prediction ⚽")
         st.subheader("Predict a player's market value using advanced ML techniques.")
 
     with st.container():
         buff, col, buff2 = st.columns([1, 3, 1])
         
-        
         with col.form("player_form"):
-            
             player_name = st.text_input("Enter the player's name:")
-            age = st.number_input("Enter the Age(min value=16, max value=45):", min_value=16, max_value=45, step=1)
-            dribbling_reflexes = st.number_input("Enter the Dribbling / Reflexes(max value=100):", min_value=0, max_value=100, step=1)
-            passing_kicking = st.number_input("Enter the Passing / Kicking(max value=100):", min_value=0, max_value=100, step=1)
-            shooting_handling = st.number_input("Enter the Shooting / Handling(max value=100):", min_value=0, max_value=100, step=1)
-            total_mentality = st.number_input("Enter the Total mentality (max value=500):", min_value=0, max_value=500, step=1)
-            shot_power = st.number_input("Enter the Shot power(max value=100):", min_value=0, max_value=100, step=1)
-            total_power = st.number_input("Enter the Total power (max value=500):", min_value=0, max_value=500, step=1)
-            ball_control = st.number_input("Enter the Ball control (max value=100):", min_value=0, max_value=100, step=1)
-            finishing = st.number_input("Enter the Finishing(max value=100):", min_value=0, max_value=100, step=1)
+            age = st.number_input("Enter the Age (min value=16, max value=45):", min_value=16, max_value=45, step=1)
+            dribbling_reflexes = st.number_input("Enter Dribbling / Reflexes (max value=100):", min_value=0, max_value=100, step=1)
+            passing_kicking = st.number_input("Enter Passing / Kicking (max value=100):", min_value=0, max_value=100, step=1)
+            shooting_handling = st.number_input("Enter Shooting / Handling (max value=100):", min_value=0, max_value=100, step=1)
+            total_mentality = st.number_input("Enter Total Mentality (max value=500):", min_value=0, max_value=500, step=1)
+            shot_power = st.number_input("Enter Shot Power (max value=100):", min_value=0, max_value=100, step=1)
+            total_power = st.number_input("Enter Total Power (max value=500):", min_value=0, max_value=500, step=1)
+            ball_control = st.number_input("Enter Ball Control (max value=100):", min_value=0, max_value=100, step=1)
+            finishing = st.number_input("Enter Finishing (max value=100):", min_value=0, max_value=100, step=1)
 
-            # Submit button for the form
             submit_button = st.form_submit_button("Predict Market Value")
 
             if submit_button:
-                # Check if any input is empty
                 if player_name == "":
-                    st.warning("Your input is empty")
+                    st.warning("Player name cannot be empty.")
                 else:
-                    # Preprocess the input data to match the model
                     features = preprocess_input(age, dribbling_reflexes, passing_kicking, shooting_handling, 
                                                 total_mentality, shot_power, total_power, ball_control, finishing)
 
-                    # Predict the log market value and convert it to millions
                     try:
                         log_market_value = model.predict(features)[0]
                         predicted_market_value = np.exp(log_market_value) / 1_000_000
 
+                        report_data = f"""
+                        Player's name: {player_name}
+                        Age: {age}
+                        Dribbling Reflexes: {dribbling_reflexes} 
+                        Passing Kicking: {passing_kicking} 
+                        Shooting Handling: {shooting_handling}
+                        Total Mentality: {total_mentality}
+                        Shot Power: {shot_power}
+                        Total Power: {total_power}
+                        Ball Control: {ball_control}
+                        Finishing: {finishing}
+                        Predicted Market Value: ${predicted_market_value:.2f} million
+                        """
+
                         # Display the predicted value
                         st.success(f"Predicted Market Value for {player_name}: ${predicted_market_value:.2f} million")
+
+                        # Store the report data in session state
+                        st.session_state['report_data'] = report_data
+
                     except ValueError as e:
                         st.error(f"Prediction error: {e}")
-        
-        # Prepare input data for radar chart
+
+        # Check if report data is available after form submission
+        if 'report_data' in st.session_state:
+            st.download_button(
+                label="Download Report",
+                data=st.session_state['report_data'],
+                file_name=f"{player_name}_report.txt",
+                mime="text/plain"
+            )
+
         input_data = {
             'age': age,
             'dribbling_reflexes': dribbling_reflexes,
@@ -115,15 +129,12 @@ def main():
             'finishing': finishing
         }
 
-    # Display the radar chart
     radar_chart = get_radar_chart(input_data)
     st.plotly_chart(radar_chart)
 
-    # Load custom CSS
     with open("Assets/style.css") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-    # Set background image
     page_bg_img = '''
     <style>
     .stApp {
@@ -138,3 +149,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
