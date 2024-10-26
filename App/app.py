@@ -96,11 +96,11 @@ def main():
                         Total Power: {total_power}
                         Ball Control: {ball_control}
                         Finishing: {finishing}
-                        Predicted Market Value: ${predicted_market_value:.2f} million
+                        Predicted Market Value: €{predicted_market_value:.2f} million
                         """
 
                         # Display the predicted value
-                        st.success(f"Predicted Market Value for {player_name}: ${predicted_market_value:.2f} million")
+                        st.success(f"Predicted Market Value for {player_name}: €{predicted_market_value:.2f} million")
 
                         # Store the report data in session state
                         st.session_state['report_data'] = report_data
